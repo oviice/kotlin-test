@@ -2,10 +2,12 @@ package com.cel.kotlintest.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -28,7 +30,10 @@ class MainActivity : AppCompatActivity() {
         edit = findViewById(R.id.edit)
 
         countBtn.setOnClickListener {
-            myViewModel.getUser(edit.text.toString());
+            if (!TextUtils.isEmpty(edit.text))
+                myViewModel.getUser(edit.text.toString())
+            else
+                Toast.makeText(this,"Edit text is empty",Toast.LENGTH_SHORT).show()
 //            countViewModel.setInitialCount(edit.text.toString().toInt())
 //            countViewModel.incrementCount()
         }

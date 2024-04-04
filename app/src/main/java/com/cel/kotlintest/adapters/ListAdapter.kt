@@ -1,7 +1,6 @@
 package com.cel.kotlintest.adapters
 
 import android.content.Context
-import android.transition.CircularPropagation
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.transform.CircleCropTransformation
 import com.cel.kotlintest.R
 import com.cel.kotlintest.model.User
 
@@ -25,16 +23,16 @@ class ListAdapter(private val context: Context, private val dataList: List<User>
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        Log.d("TAG", "onBindViewHolder: ${dataList.get(position).organizationsUrl}")
-        holder.name.text=dataList.get(position).organizationsUrl
-        holder.image.load(dataList.get(position).avatarUrl){
+        Log.d("TAG", "onBindViewHolder: ${dataList[position].organizationsUrl}")
+        holder.name.text= dataList[position].organizationsUrl
+        holder.image.load(dataList[position].avatarUrl){
             crossfade(true)
             placeholder(R.drawable.ic_launcher_background)
             //transformations(CircleCropTransformation())
         }
-        holder.itemView.setOnClickListener(View.OnClickListener {
-            Toast.makeText(context,"Id: ${dataList[position].id}",Toast.LENGTH_SHORT).show()
-        })
+        holder.itemView.setOnClickListener {
+            Toast.makeText(context, "Id: ${dataList[position].id}", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun getItemCount(): Int {

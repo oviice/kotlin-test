@@ -18,17 +18,17 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class ListActivity : AppCompatActivity() {
     private val myViewModel: MyViewModel by viewModels()
-    lateinit var listAdapter:ListAdapter
+    private lateinit var listAdapter:ListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
-        var list:RecyclerView =findViewById(R.id.list)
+        val list:RecyclerView =findViewById(R.id.list)
         list.layoutManager=LinearLayoutManager(this)
         myViewModel.getUserList()
         myViewModel.userListLiveData.observe(this) {
             listAdapter = ListAdapter(this, it)
             list.adapter = listAdapter
-            Log.d("TAG", "onCreate: ${it.get(2).organizationsUrl}")
+            Log.d("TAG", "onCreate: ${it[2].organizationsUrl}")
         }
     }
 }
