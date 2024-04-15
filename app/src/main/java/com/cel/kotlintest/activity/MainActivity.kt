@@ -1,9 +1,9 @@
 package com.cel.kotlintest.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -11,17 +11,17 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.cel.kotlintest.CountViewModel
 import com.cel.kotlintest.MyViewModel
 import com.cel.kotlintest.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    lateinit var text: TextView
-    lateinit var edit: EditText
-    lateinit var countBtn: Button
+    private lateinit var text: TextView
+    private lateinit var edit: EditText
+    private lateinit var countBtn: Button
     private val myViewModel: MyViewModel by viewModels()
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
